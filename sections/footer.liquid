@@ -181,121 +181,14 @@
       {% endif %}
     </div>
 
-
-
-
-    <div class="grid grid--no-gutters">
-      {% if social_icons %}
-        <div class="grid__item{% if section.settings.footer_newsletter_enable %} medium-up--one-half{% else %} text-center{% endif %}">
-          <ul class="list--inline site-footer__social-icons social-icons">
-            {% if settings.social_facebook_link != blank %}
-              <li>
-                <a class="social-icons__link" href="{{ settings.social_facebook_link }}" title="{{ 'layout.footer.social_platform' | t: name: shop.name, platform: 'Facebook' }}">
-                  {% include 'icon-facebook' %}
-                  <span class="icon__fallback-text">Facebook</span>
-                </a>
-              </li>
-            {% endif %}
-            {% if settings.social_twitter_link != blank %}
-              <li>
-                <a class="social-icons__link" href="{{ settings.social_twitter_link }}" title="{{ 'layout.footer.social_platform' | t: name: shop.name, platform: 'Twitter' }}">
-                  {% include 'icon-twitter' %}
-                  <span class="icon__fallback-text">Twitter</span>
-                </a>
-              </li>
-            {% endif %}
-            {% if settings.social_pinterest_link != blank %}
-              <li>
-                <a class="social-icons__link" href="{{ settings.social_pinterest_link }}" title="{{ 'layout.footer.social_platform' | t: name: shop.name, platform: 'Pinterest' }}">
-                  {% include 'icon-pinterest' %}
-                  <span class="icon__fallback-text">Pinterest</span>
-                </a>
-              </li>
-            {% endif %}
-            {% if settings.social_instagram_link != blank %}
-              <li>
-                <a class="social-icons__link" href="{{ settings.social_instagram_link }}" title="{{ 'layout.footer.social_platform' | t: name: shop.name, platform: 'Instagram' }}">
-                  {% include 'icon-instagram' %}
-                  <span class="icon__fallback-text">Instagram</span>
-                </a>
-              </li>
-            {% endif %}
-            {% if settings.social_untapped_link != blank %}
-              <li>
-                <a class="social-icons__link" href="{{ settings.social_untapped_link }}" title="{{ 'layout.footer.social_platform' | t: name: shop.name, platform: 'Untapped' }}">
-                  {% include 'icon-untapped' %}
-                  <span class="icon__fallback-text">Untapped</span>
-                </a>
-              </li>
-            {% endif %}
-            {% if settings.social_snapchat_link != blank %}
-              <li>
-                <a class="social-icons__link" href="{{ settings.social_snapchat_link }}" title="{{ 'layout.footer.social_platform' | t: name: shop.name, platform: 'Snapchat' }}">
-                  {% include 'icon-snapchat' %}
-                  <span class="icon__fallback-text">Snapchat</span>
-                </a>
-              </li>
-            {% endif %}
-            {% if settings.social_youtube_link != blank %}
-              <li>
-                <a class="social-icons__link" href="{{ settings.social_youtube_link }}" title="{{ 'layout.footer.social_platform' | t: name: shop.name, platform: 'YouTube' }}">
-                  {% include 'icon-youtube' %}
-                  <span class="icon__fallback-text">YouTube</span>
-                </a>
-              </li>
-            {% endif %}
-            {% if settings.social_vimeo_link != blank %}
-              <li>
-                <a class="social-icons__link" href="{{ settings.social_vimeo_link }}" title="{{ 'layout.footer.social_platform' | t: name: shop.name, platform: 'Vimeo' }}">
-                  {% include 'icon-vimeo' %}
-                  <span class="icon__fallback-text">Vimeo</span>
-                </a>
-              </li>
-            {% endif %}
-            {% if template contains 'blog' or template contains 'article' %}
-              <li>
-                <a class="social-icons__link" href="{{ shop.url }}{{ blog.url }}.atom">
-                  {% include 'icon-rss' %}
-                  <span class="icon__fallback-text">RSS</span>
-                </a>
-              </li>
-            {% endif %}
-          </ul>
-        </div>
-      {% endif %}
-      <div class="grid__item{% if section.settings.footer_newsletter_enable and social_icons == true %} medium-up--one-half{% else %} text-center{% endif %}">
-        <div class="site-footer__copyright{% if social_icons and section.settings.footer_newsletter_enable != blank %} site-footer__copyright--right medium-up--text-right{% elsif social_icons == false and section.settings.footer_newsletter_enable %} medium-up--text-left{% endif %}">
-          {% unless social_icons and section.settings.footer_newsletter_enable and section.settings.show_payment_icons %}
+      <div class="grid__item{% if section.settings.footer_newsletter_enable and social_icons == true %} medium-up--one-whole{% else %} text-center{% endif %}">
+        <div class="site-footer__copyright">
             <small class="site-footer__copyright-content">&copy; {{ 'now' | date: "%Y" }}, {{ shop.name | link_to: '/' }}</small>
             <small class="site-footer__copyright-content site-footer__copyright-content--powered-by">{{ powered_by_link }}</small>
-          {% endunless %}
-          {% if section.settings.show_payment_icons %}
-            <div class="site-footer__payment-icons{% unless social_icons or section.settings.footer_newsletter_enable == blank %} site-footer__payment-icons--right{% endunless %}">
-              {% unless shop.enabled_payment_types == empty %}
-                {%- assign payment_icons_available = 'amazon_payments,american_express,apple_pay,bitcoin,cirrus,dankort,diners_club,discover,dogecoin,dwolla,forbrugsforeningen,interac,jcb,litecoin,maestro,master,paypal,stripe,visa' | split: ',' -%}
-                <ul class="payment-icons list--inline">
-                  {% for type in shop.enabled_payment_types %}
-                    {% if payment_icons_available contains type %}
-                      <li class="payment-icon">
-                        {%- assign icon_name = type | prepend: 'icon-' -%}
-                        {% include icon_name %}
-                      </li>
-                    {% endif %}
-                  {% endfor %}
-                </ul>
-              {% endunless %}
-            </div>
-          {% endif %}
         </div>
       </div>
     </div>
 
-    {% if social_icons and section.settings.footer_newsletter_enable and section.settings.show_payment_icons %}
-      <div class="site-footer__copyright--bottom">
-        <small class="site-footer__copyright-content">&copy; {{ 'now' | date: "%Y" }}, {{ shop.name | link_to: '/' }}</small>
-        <small class="site-footer__copyright-content">{{ powered_by_link }}</small>
-      </div>
-    {% endif %}
   </div>
 
 
