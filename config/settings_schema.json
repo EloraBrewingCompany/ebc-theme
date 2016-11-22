@@ -785,9 +785,9 @@
       },
       {
         "type": "text",
-        "id": "social_tumblr_link",
-        "label": "Tumblr",
-        "info": "http://shopify.tumblr.com"
+        "id": "social_untapped_link",
+        "label": "Untapped",
+        "info": "http://untapped.com/shopify"
       },
       {
         "type": "text",
