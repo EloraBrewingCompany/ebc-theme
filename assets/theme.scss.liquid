@@ -324,6 +324,12 @@ $color-body: {{ settings.color_body_bg }};
 $color-bg: {{ settings.color_body_bg }};
 $color-drawer-background: rgba(0, 0, 0, 0.6);
 
+$color-footer: {{ settings.color_footer }};
+$color-footer-bg: {{ settings.color_footer_bg }};
+
+$color-hover-link: {{ settings.color_hover_link }};
+
+
 // Overlays
 $color-overlay-title-text: {{ settings.color_image_overlay_text }};
 $color-image-overlay: {{ settings.color_image_overlay }};
@@ -1176,10 +1182,8 @@ html {
 
 .main-content {
   display: block;
-  padding-top: $section-spacing-small;
-
   @include media-query($medium-up) {
-    padding-top: $section-spacing;
+    // padding-top: $section-spacing;
   }
 }
 
@@ -1441,21 +1445,24 @@ li {
 
 .mega-title {
   margin-bottom: 8px;
+  text-align: right;
 }
 
 .mega-title--large {
-  font-size: em($font-size-header + 8);
+  //font-size: em($font-size-header + 8);
 
   @include media-query($medium-up) {
-    font-size: em(floor($font-size-header * 2.5));
+    //font-size: em(floor($font-size-header * 2.5));
   }
 }
 
 .mega-subtitle {
   @include media-query($medium-up) {
-    font-size: em($font-size-base + 4);
-    margin: 0 auto;
-    max-width: 75%;
+    text-align: right;
+    width: 50%;
+    float: right;
+    // margin: 0 auto;
+    // max-width: 50%;
   }
 
   p {
@@ -2200,6 +2207,10 @@ $dropdown-padding: 11px 17px;
   }
 }
 
+.site-header a {
+  color: white;
+}
+
 .site-nav {
   position: relative;
   padding: 0;
@@ -2208,6 +2219,11 @@ $dropdown-padding: 11px 17px;
 
   a {
     padding: 3px 10px;
+  }
+
+  a:hover {
+    color: #CD582F;
+    opacity: 1;
   }
 
   li {
@@ -2223,6 +2239,7 @@ $dropdown-padding: 11px 17px;
 .site-nav__link {
   display: block;
   white-space: nowrap;
+  font-weight: bolder;
 
   .site-nav--centered & {
     padding-top: 0;
@@ -2830,11 +2847,11 @@ $slick-dot-size-small: 10px;
 
 // Flush sections should be tight to the footer if they are last on the page
 .index-section--flush:last-child {
-  margin-bottom: -$section-spacing-small;
+//  margin-bottom: -$section-spacing-small;
 
-  @include media-query($medium-up) {
-    margin-bottom: -$section-spacing;
-  }
+//  @include media-query($medium-up) {
+//    margin-bottom: -$section-spacing;
+//  }
 }
 
 // Visually align featured product section (if first on homepage on mobile)
@@ -3517,11 +3534,16 @@ h1.product-single__title {
 
 /*================ MODULES ================*/
 .site-header {
-  background-color: $color-body;
-  position: relative;
+  position: absolute;
   padding: 0 $gutter-site;
 
+  left: 0;
+  right: 0;
+  z-index: 1030;
+  background: transparent;
+
   @include media-query($small) {
+    background-color: $color-body;
     border-bottom: 1px solid $color-border;
     padding: 0;
   }
@@ -3600,6 +3622,9 @@ h1.product-single__title {
 
   .site-header__icons--plus & {
     padding-right: 90px;
+  }
+  button {
+    color: white;
   }
 }
 
@@ -4411,8 +4436,11 @@ $color-slideshow-close-text: #000;
   width: 100%;
   background-repeat: no-repeat;
   background-size: cover;
-  background-position: top center;
+  background-position: center bottom;
   z-index: $z-index-slideshow-image;
+
+  box-shadow: inset 0 0 0 1000px rgba(0,0,0,.4);
+  background-color: #000;
 
   .slick-initialized &,
   .no-js & {
@@ -4810,13 +4838,28 @@ $toolbar-height-small: 46px;
   }
 }
 
+
+
 .site-footer {
-  margin: $section-spacing 0;
+  padding: $section-spacing 0;
+
+  color: $color-footer;
+  background: $color-footer-bg;  
 
   @include media-query($small) {
     text-align: center;
   }
 }
+
+.site-footer a{
+ color: $color-footer;
+}
+
+.site-footer a:hover {
+  opacity: 1;
+  color: $color-hover-link;
+}
+
 
 @include media-query($medium-up) {
   .site-footer__linklist--center {
@@ -5147,6 +5190,18 @@ $toolbar-height-small: 46px;
 .logo-bar__link {
   display: block;
 }
+
+.map-address-bar {
+  text-align: center;
+  width: 100%;
+  background-color: white;
+}
+
+.map-address-bar p{
+  text-transform: uppercase;
+  padding: 10px 0px;
+}
+
 
 .map-section {
   position: relative;
@@ -5479,4 +5534,93 @@ $toolbar-height-small: 46px;
   @include align-self(flex-end);
   text-align: right;
 }
+
+
+
+// Header video
+
+.header-container {
+    width: 100%;
+    height: 550px;
+    border-left: none;
+    border-right: none;
+    position: relative;
+    padding: 20px;
+    display: table;
+    box-shadow: inset 0 0 0 1000px rgba(86,31,11,.5);
+
+
+}
+
+.video-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    z-index: 0;
+
+  @include media-query($small) {
+    position: absolute;
+    background: url({{ 'EloraBeer.jpg' | asset_url }}) #000 no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    background-size: cover;
+    -o-background-size: cover;
+    background-attachment: scroll; 
+    }    
+}
+
+video {
+    z-index: -9;
+    opacity: 0.78;
+    width: 100%;
+}
+
+video#bgvid {
+  @include media-query($medium-up) {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      min-width: 100%;
+      min-height: 100%;
+      width: auto;
+      height: auto;
+      z-index: -100;
+      -webkit-transform: translateX(-50%) translateY(-50%);
+      transform: translateX(-50%) translateY(-50%);
+      background: url({{ 'video-bg.jpg' | asset_url }}) no-repeat;
+      background-size: cover;
+
+      display: inline-block;
+      vertical-align: baseline;
+      object-fit: contain;
+    }
+  @include media-query($small) {
+    display: none;
+  }
+
+}
+
+.inner-wrapper {
+  display: table-cell;
+  vertical-align: middle;
+  position: relative;
+  z-index: 1;
+
+
+  h1.headline {
+    color: #ffffff;
+    text-align: left;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-size: 40px;
+    max-width: 650px;
+    position: relative;
+  }
+}
+
+
+
+
 

@@ -67,7 +67,6 @@
 </head>
 
 <body class="template-{{ template | split: '.' | first }}">
-
   <a class="in-page-link visually-hidden skip-link" href="#MainContent">{{ 'general.accessibility.skip_to_content' | t }}</a>
   <div id="SearchDrawer" class="search-bar drawer drawer--top">
     <div class="search-bar__table">
@@ -89,6 +88,28 @@
     </div>
   </div>
   {% section 'header' %}
+
+  {% if template contains 'index' %}
+
+    <!-- Video Header container -->
+    <div class="header-container">
+        <div class="video-container">
+            <video preload = "true" autoplay = "autoplay" loop = "loop" volume =  "0" id="bgvid" poster ="/{{ 'video-bg.jpg' | asset_url }}">
+                <source src = "{{ 'EloraBrewing.webm' | asset_url}}" type = "video/webm" >
+                <source src = "{{ 'EloraBrewing.mp4' | asset_url }}" type = "video-mp4" >
+                <source src = "{{ 'EloraBrewing.ogg' | asset_url }}" type = "video/ogg" >
+
+            </video>
+        </div> <!-- end of video container -->
+
+        <div class="inner-wrapper">
+            <div class="container">
+                <h1 class="headline mega-title">Craft beer in the heart of downtown <span>Elora</span></h1>
+            </div>
+        </div>
+    </div> <!-- end of header container -->
+
+  {% endif %}
 
   <div class="page-container" id="PageContainer">
 

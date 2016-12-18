@@ -91,6 +91,25 @@
         "default": "#3d4246"
       },
       {
+        "type": "color",
+        "id": "color_hover_link",
+        "label": "Hover link text color",
+        "default": "#CD582F"
+      },
+      {
+        "type": "color",
+        "id": "color_footer",
+        "label": "Footer text color",
+        "default": "#FFFFFF"
+      },
+      {
+        "type": "color",
+        "id": "color_footer_bg",
+        "label": "Footer background color",
+        "default": "#000000"
+      },
+
+      {
         "type": "select",
         "id": "image_overlay_opacity",
         "label": "Opacity",

@@ -32,6 +32,9 @@
   <a class="map-section__link" href="https://www.google.ca/maps/place/{{ section.settings.map_address }}" target="_blank" aria-label="{{ section.settings.map_address }}"></a>
   <div class="map-section__container" id="Map-{{ section.id }}" data-address-setting="{{ section.settings.map_address }}"></div>
 </div>
+<div class="map-address-bar">
+  <p>{{ section.settings.map_address }}</p>
+</div>
 
 {% schema %}
   {
